@@ -53,7 +53,7 @@ const brickReset = () => {
 	for(i=0; i< 3*Bricks['BRICK_COLS']; i++) {
 		brickGrid[i] = false;
 	}
-	for(i=0; i<Bricks['BRICK_COLS'] * Bricks['BRICK_ROWS']; i++) {
+	for(i = 3 * Bricks['BRICK_COLS']; i<Bricks['BRICK_COLS'] * Bricks['BRICK_ROWS']; i++) {
 		brickGrid[i] = true;
 		bricksLeft++;
 	}
@@ -144,7 +144,7 @@ const BrickHandling = () => {
 				}
 			}
 
-			if(bothTestsFailed) { // armpit case, prevents ball from going through
+			if(bothTestsFailed) { // Hit corner of brick
 				ballData['SpeedX'] *= -1;
 				ballData['SpeedY'] *= -1;
 			}
@@ -159,10 +159,10 @@ const BallHitPaddle = () => {
 	let paddleBottomEdgeY = paddleTopEdgeY + paddle['PADDLE_THICKNESS'];
 	let paddleLeftEdgeX = paddle['paddleX'];
 	let paddleRightEdgeX = paddleLeftEdgeX + paddle['PADDLE_WIDTH'];
-	if( ballData['ballY'] > paddleTopEdgeY && // below the top of paddle
-		ballData['ballY'] < paddleBottomEdgeY && // above bottom of paddle
-		ballData['ballX'] > paddleLeftEdgeX && // right of the left side of paddle
-		ballData['ballX'] < paddleRightEdgeX) { // left of the left side of paddle
+	if( ballData['ballY'] > paddleTopEdgeY &&
+		ballData['ballY'] < paddleBottomEdgeY &&
+		ballData['ballX'] > paddleLeftEdgeX &&
+		ballData['ballX'] < paddleRightEdgeX) {
 		
 		ballData['SpeedY'] *= -1;
 
